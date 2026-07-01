@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frankie Junction - Premium Frankie Experience</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&family=Pacifico&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    :root {
+      --primary: #ff5722;
+      --primary-dark: #e64a19;
+      --secondary: #ffc107;
+      --dark: #1a1a1a;
+      --light: #fff8f0;
+      --whatsapp: #25D366;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--light);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: linear-gradient(135deg, #ff5722, #ff8a3d);
+      padding: 15px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo {
+      color: #fff;
+      font-size: 1.7rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: var(--secondary);
+      font-family: 'Pacifico', cursive;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: .3s;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--secondary);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--secondary);
+      transition: .3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .cart-btn {
+      background: #fff;
+      color: var(--primary);
+      padding: 8px 18px;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: .3s;
+      font-size: .95rem;
+    }
+
+    .cart-btn:hover {
+      transform: scale(1.05);
+    }
+
+    #cartCount {
+      background: var(--primary);
+      color: #fff;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .8rem;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 60px 20px;
+      position: relative;
+      background: linear-gradient(135deg, rgba(255, 87, 34, 0.85), rgba(0, 0, 0, 0.7)),
+        url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1600') center/cover fixed;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '🌯';
+      position: absolute;
+      font-size: 15rem;
+      opacity: 0.08;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-10deg);
+      }
+
+      50% {
+        transform: translateY(-30px) rotate(10deg);
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: slideUp 1s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .tagline {
+      background: rgba(255, 193, 7, 0.2);
+      padding: 8px 20px;
+      border-radius: 25px;
+      display: inline-block;
+      margin-bottom: 20px;
+      font-weight: 600;
+      border: 1px solid var(--secondary);
+    }
+
+    .hero h2 {
+      font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+      font-weight: 900;
+      text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.4);
+      line-height: 1.1;
+    }
+
+    .hero h2 span {
+      color: var(--secondary);
+      font-family: 'Pacifico', cursive;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      margin: 25px 0;
+      max-width: 750px;
+      line-height: 1.6;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .btn {
+      padding: 14px 35px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .3s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: var(--secondary);
+      color: var(--dark);
+      box-shadow: 0 5px 20px rgba(255, 193, 7, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      background: #fff;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid #fff;
+    }
+
+    .btn-outline:hover {
+      background: #fff;
+      color: var(--primary);
+    }
+
+    /* STATS */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      padding: 40px 8%;
+      background: #fff;
+      text-align: center;
+      margin-top: -50px;
+      position: relative;
+      z-index: 5;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-item h3 {
+      font-size: 2.2rem;
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .stat-item p {
+      color: #666;
+      font-weight: 500;
+      font-size: .95rem;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 70px 8%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title small {
+      color: var(--primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: .85rem;
+    }
+
+    .section-title h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--dark);
+      font-weight: 800;
+      margin: 8px 0;
+    }
+
+    .section-title h2 span {
+      color: var(--primary);
+    }
+
+    .section-title p {
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ABOUT */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-img {
+      height: 400px;
+      border-radius: 20px;
+      background: url('https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=800') center/cover;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      position: relative;
+    }
+
+    .about-img::before {
+      content: '🔥';
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      background: var(--secondary);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      box-shadow: 0 10px 30px rgba(255, 193, 7, 0.4);
+    }
+
+    .about-text h3 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+      color: var(--dark);
+    }
+
+    .about-text h3 span {
+      color: var(--primary);
+    }
+
+    .about-text p {
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .about-features div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #444;
+      font-weight: 500;
+    }
+
+    .about-features i {
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* MENU */
+    .menu-section {
+      background: #fff8f0;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      transition: .4s;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(255, 87, 34, 0.2);
+    }
+
+    .card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      transition: .5s;
+    }
+
+    .card:hover img {
+      transform: scale(1.1);
+    }
+
+    .badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: var(--primary);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: .75rem;
+      font-weight: 700;
+      z-index: 2;
+      box-shadow: 0 4px 10px rgba(255, 87, 34, 0.3);
+    }
+
+    .fav {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(255, 255, 255, 0.95);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #ff3b3b;
+      font-size: 1rem;
+      z-index: 2;
+    }
+
+    .card-body {
+      padding: 22px;
+    }
+
+    .rating {
+      color: var(--secondary);
+      font-size: .9rem;
+      margin-bottom: 5px;
+    }
+
+    .rating span {
+      color: #888;
+      margin-left: 5px;
+    }
+
+    .card-body h3 {
+      font-size: 1.3rem;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+
+    .card-body .desc {
+      color: #777;
+      font-size: .9rem;
+      margin-bottom: 15px;
+      min-height: 40px;
+      line-height: 1.5;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .price {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .price small {
+      font-size: .85rem;
+      color: #aaa;
+      text-decoration: line-through;
+      margin-left: 6px;
+      font-weight: 500;
+    }
+
+    .add-btn {
+      background: linear-gradient(135deg, #ff5722, #ff8a3d);
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: .3s;
+      font-size: .9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .add-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(255, 87, 34, 0.4);
+    }
+
+    .qty-control {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .qty-control button {
+      width: 32px;
+      height: 32px;
+      border: none;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .qty-control span {
+      font-weight: 700;
+      font-size: 1.1rem;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    /* WHY CHOOSE US */
+    .why-section {
+      background: linear-gradient(135deg, #fff, #fff8f0);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+    .feature {
+      background: #fff;
+      padding: 30px 25px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      transition: .4s;
+      border-bottom: 4px solid transparent;
+    }
+
+    .feature:hover {
+      transform: translateY(-8px);
+      border-bottom-color: var(--primary);
+    }
+
+    .feature-icon {
+      width: 75px;
+      height: 75px;
+      background: linear-gradient(135deg, #ff5722, #ffc107);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #fff;
+      margin: 0 auto 18px;
+      box-shadow: 0 8px 20px rgba(255, 87, 34, 0.3);
+    }
+
+    .feature h4 {
+      margin-bottom: 10px;
+      color: var(--dark);
+      font-size: 1.2rem;
+    }
+
+    .feature p {
+      color: #666;
+      font-size: .92rem;
+      line-height: 1.6;
+    }
+
+    /* HOW TO ORDER */
+    .steps-section {
+      background: var(--dark);
+      color: #fff;
+    }
+
+    .steps-section .section-title h2 {
+      color: #fff;
+    }
+
+    .steps-section .section-title p {
+      color: #bbb;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+    }
+
+    .step {
+      text-align: center;
+      padding: 30px 20px;
+      position: relative;
+    }
+
+    .step-num {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #ff5722, #ffc107);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin: 0 auto 18px;
+      box-shadow: 0 8px 25px rgba(255, 87, 34, 0.4);
+    }
+
+    .step h4 {
+      margin-bottom: 10px;
+      color: var(--secondary);
+      font-size: 1.2rem;
+    }
+
+    .step p {
+      color: #ccc;
+      font-size: .92rem;
+      line-height: 1.6;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials-section {
+      background: #fff8f0;
+    }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .testimonial {
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      position: relative;
+      transition: .3s;
+    }
+
+    .testimonial:hover {
+      transform: translateY(-5px);
+    }
+
+    .testimonial::before {
+      content: '\201C';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      font-size: 5rem;
+      color: var(--primary);
+      opacity: 0.2;
+      font-family: Georgia;
+      line-height: 1;
+    }
+
+    .test-rating {
+      color: var(--secondary);
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    .testimonial p {
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 15px;
+      font-style: italic;
+    }
+
+    .test-user {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff5722, #ffc107);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+
+    .test-user b {
+      display: block;
+      color: var(--dark);
+    }
+
+    .test-user small {
+      color: #888;
+    }
+
+    /* FEEDBACK FORM */
+    .feedback-section {
+      background: linear-gradient(135deg, #ff5722, #ff8a3d);
+      color: #fff;
+    }
+
+    .feedback-section .section-title small {
+      color: var(--secondary);
+    }
+
+    .feedback-section .section-title h2 {
+      color: #fff;
+    }
+
+    .feedback-section .section-title p {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .feedback-box {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 35px;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      color: var(--dark);
+    }
+
+    .star-rating {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 15px 0 25px;
+    }
+
+    .star-rating i {
+      font-size: 2.2rem;
+      color: #ddd;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .star-rating i.active,
+    .star-rating i:hover,
+    .star-rating i:hover~i {
+      color: var(--secondary);
+    }
+
+    .star-rating {
+      direction: rtl;
+    }
+
+    .star-rating i:hover,
+    .star-rating i:hover~i {
+      color: var(--secondary);
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 13px 15px;
+      border: 2px solid #eee;
+      border-radius: 12px;
+      font-size: .95rem;
+      outline: none;
+      transition: .3s;
+      font-family: inherit;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary);
+    }
+
+    /* CONTACT */
+    .contact-section {
+      background: #fff;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .contact-card {
+      text-align: center;
+      padding: 35px 25px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #fff8f0, #fff);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+      transition: .3s;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .contact-card i {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .contact-card h4 {
+      margin-bottom: 8px;
+      color: var(--dark);
+    }
+
+    .contact-card p,
+    .contact-card a {
+      color: #666;
+      text-decoration: none;
+      line-height: 1.6;
+    }
+
+    /* CART MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 200;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      animation: fadeIn .3s;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #fff;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 30px;
+      position: relative;
+    }
+
+    .modal-content h2 {
+      color: var(--primary);
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #888;
+      background: none;
+      border: none;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px dashed #ddd;
+    }
+
+    .cart-item-info b {
+      display: block;
+      color: var(--dark);
+    }
+
+    .cart-item-info small {
+      color: #777;
+    }
+
+    .total {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-align: right;
+      padding: 15px 0;
+      border-top: 2px solid var(--primary);
+      margin-top: 10px;
+    }
+
+    .order-btn {
+      width: 100%;
+      background: var(--whatsapp);
+      color: #fff;
+      border: none;
+      padding: 15px;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+      transition: .3s;
+    }
+
+    .order-btn:hover {
+      background: #1ebe57;
+      transform: translateY(-2px);
+    }
+
+    .empty {
+      text-align: center;
+      padding: 30px;
+      color: #888;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      color: #fff;
+      padding: 50px 8% 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 35px;
+      margin-bottom: 30px;
+    }
+
+    .footer-col h3 {
+      color: var(--secondary);
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+
+    .footer-col p,
+    .footer-col a {
+      color: #bbb;
+      text-decoration: none;
+      line-height: 1.9;
+      display: block;
+      font-size: .92rem;
+      transition: .3s;
+    }
+
+    .footer-col a:hover {
+      color: var(--primary);
+    }
+
+    .social {
+      display: flex;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .social a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      transition: .3s;
+    }
+
+    .social a:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 25px;
+      border-top: 1px solid #333;
+      color: #888;
+      font-size: .9rem;
+    }
+
+    /* FLOATING WHATSAPP */
+    .float-wa {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: var(--whatsapp);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.8rem;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      z-index: 99;
+      cursor: pointer;
+      animation: pulse 2s infinite;
+      text-decoration: none;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+      }
+
+      50% {
+        transform: scale(1.1);
+        box-shadow: 0 5px 30px rgba(37, 211, 102, 0.7);
+      }
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:900px) {
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .about-img {
+        height: 300px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--primary-dark);
+        padding: 20px;
+        gap: 15px;
+      }
+    }
+
+    @media(max-width:600px) {
+      nav {
+        padding: 12px 5%;
+      }
+
+      .logo {
+        font-size: 1.3rem;
+      }
+
+      section {
+        padding: 50px 5%;
+      }
+
+      .hero {
+        min-height: 80vh;
+      }
+
+      .about-features {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">🌯 Frankie<span>Junction</span></div>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#feedback">Feedback</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="cart-btn" onclick="openCart()"><i class="fas fa-shopping-cart"></i> <span
+        id="cartCount">0</span></button>
+    <button class="menu-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')"><i
+        class="fas fa-bars"></i></button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="tagline">🔥 #1 Frankie Shop in Town</div>
+      <h2>Sizzling Hot <span>Frankies</span><br>Delivered To Your Door 🌯</h2>
+      <p>Fresh, hot aur lajawab frankies banaye ja rahe hain sirf aapke liye. Premium ingredients, secret masalas aur
+        dil bhar ke pyaar ke saath!</p>
+      <div class="hero-btns">
+        <a href="#menu" class="btn btn-primary"><i class="fas fa-utensils"></i> Order Now</a>
+        <a href="#about" class="btn btn-outline"><i class="fas fa-info-circle"></i> Know More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-item">
+      <h3>5000+</h3>
+      <p>Happy Customers</p>
+    </div>
+    <div class="stat-item">
+      <h3>6</h3>
+      <p>Frankie Varieties</p>
+    </div>
+    <div class="stat-item">
+      <h3>4.9⭐</h3>
+      <p>Customer Rating</p>
+    </div>
+    <div class="stat-item">
+      <h3>30 Min</h3>
+      <p>Fast Delivery</p>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-title">
+      <small>About Us</small>
+      <h2>Our <span>Story</span></h2>
+    </div>
+    <div class="about">
+      <div class="about-img"></div>
+      <div class="about-text">
+        <h3>Welcome to <span>Frankie Junction</span> 🌯</h3>
+        <p>Hum 2018 se Frankie banane ke business me hain. Hamari koshish hai ki har grahak ko mile fresh, hygienic aur
+          tasty frankie - bilkul ghar jaisa swad!</p>
+        <p>Hamare paas hain 6 unique flavours, har ek apne aap me khaas. Premium ingredients aur secret family recipes
+          use karte hain hum.</p>
+        <div class="about-features">
+          <div><i class="fas fa-leaf"></i> 100% Veg</div>
+          <div><i class="fas fa-fire"></i> Fresh & Hot</div>
+          <div><i class="fas fa-shield-alt"></i> Hygienic</div>
+          <div><i class="fas fa-heart"></i> Made with Love</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="menu-section" id="menu">
+    <div class="section-title">
+      <small>Our Menu</small>
+      <h2>Choose Your <span>Favourite</span></h2>
+      <p>6 lajawab frankies - har ek alag swad, har ek lajawab!</p>
+    </div>
+    <div class="menu" id="menuGrid"></div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="why-section">
+    <div class="section-title">
+      <small>Why Choose Us</small>
+      <h2>What Makes Us <span>Special</span></h2>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon"><i class="fas fa-truck-fast"></i></div>
+        <h4>Fast Delivery</h4>
+        <p>30 minute me garma-garam frankie aapke ghar tak!</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon"><i class="fas fa-leaf"></i></div>
+        <h4>Fresh Ingredients</h4>
+        <p>Roz fresh sabziyan aur premium quality masale</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon"><i class="fas fa-rupee-sign"></i></div>
+        <h4>Best Price</h4>
+        <p>Premium taste at affordable price - sabke liye!</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon"><i class="fas fa-award"></i></div>
+        <h4>5000+ Happy Customers</h4>
+        <p>Trusted choice for thousands of food lovers</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO ORDER -->
+  <section class="steps-section">
+    <div class="section-title">
+      <small>How It Works</small>
+      <h2>Order In <span style="color:var(--secondary);">3 Easy Steps</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Choose Frankie</h4>
+        <p>Apna favourite frankie select karo menu se</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Add to Cart</h4>
+        <p>Quantity select karke cart me add karo</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Order on WhatsApp</h4>
+        <p>Details fill karke seedha WhatsApp pe order!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="section-title">
+      <small>Testimonials</small>
+      <h2>What Our <span>Customers Say</span></h2>
+    </div>
+    <div class="testimonials">
+      <div class="testimonial">
+        <div class="test-rating">⭐⭐⭐⭐⭐</div>
+        <p>Best frankie in town! Paneer Tikka frankie ka swad bilkul awesome hai. Family ko bhi bahut pasand aaya 😍</p>
+        <div class="test-user">
+          <div class="avatar">SN</div>
+          <div><b>Sahil Nerpagar</b><small>Regular Customer</small></div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="test-rating">⭐⭐⭐⭐⭐</div>
+        <p>Cheese Burst Frankie - mind blowing! Fresh, hot aur full of cheese. Highly recommended ❤️</p>
+        <div class="test-user">
+          <div class="avatar">KP</div>
+          <div><b>Komal Patil</b><small>Food Blogger</small></div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="test-rating">⭐⭐⭐⭐⭐</div>
+        <p>Schezwan Frankie spicy lovers ke liye perfect hai! Delivery bhi bahut fast hoti hai 🔥</p>
+        <div class="test-user">
+          <div class="avatar">SP</div>
+          <div><b>Smit patel</b><small>College Student</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEEDBACK FORM -->
+  <section class="feedback-section" id="feedback">
+    <div class="section-title">
+      <small>Your Opinion Matters</small>
+      <h2>Share Your <span style="color:var(--secondary);">Feedback</span></h2>
+      <p>Aapka feedback humare liye bahut important hai!</p>
+    </div>
+    <div class="feedback-box">
+      <h3 style="text-align:center;color:var(--primary);">Rate Your Experience ⭐</h3>
+      <div class="star-rating" id="starRating">
+        <i class="fas fa-star" data-val="5"></i>
+        <i class="fas fa-star" data-val="4"></i>
+        <i class="fas fa-star" data-val="3"></i>
+        <i class="fas fa-star" data-val="2"></i>
+        <i class="fas fa-star" data-val="1"></i>
+      </div>
+      <div class="form-group"><input type="text" id="fbName" placeholder="Aapka Naam *"></div>
+      <div class="form-group"><input type="tel" id="fbPhone" placeholder="Mobile Number"></div>
+      <div class="form-group"><input type="text" id="fbItem" placeholder="Konsi Frankie try ki?"></div>
+      <div class="form-group"><textarea id="fbMessage" placeholder="Apna feedback yahan likhein... *"
+          rows="4"></textarea></div>
+      <button class="order-btn" onclick="sendFeedback()"><i class="fab fa-whatsapp"></i> Send Feedback on
+        WhatsApp</button>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="section-title">
+      <small>Get In Touch</small>
+      <h2>Visit <span>Our Store</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <i class="fas fa-map-marker-alt"></i>
+        <h4>Address</h4>
+        <p>Mohan Nagar,Amroli<br>Surat , India</p>
+      </div>
+      <div class="contact-card">
+        <i class="fas fa-phone"></i>
+        <h4>Call Us</h4>
+        <a href="tel:+919999999999">+91 6351318756</a>
+      </div>
+      <div class="contact-card">
+        <i class="fab fa-whatsapp"></i>
+        <h4>WhatsApp</h4>
+        <a href="https://wa.me/919999999999" target="_blank">Chat Now</a>
+      </div>
+      <div class="contact-card">
+        <i class="fas fa-clock"></i>
+        <h4>Open Hours</h4>
+        <p>Daily: 7 AM - 7 PM</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CART MODAL -->
+  <div class="modal" id="cartModal">
+    <div class="modal-content">
+      <button class="close" onclick="closeCart()">&times;</button>
+      <h2><i class="fas fa-shopping-cart"></i> Your Order</h2>
+      <div id="cartItems"></div>
+      <div class="total" id="totalAmount">Total: ₹0</div>
+      <div class="form-group"><input type="text" id="custName" placeholder="Aapka Naam *"></div>
+      <div class="form-group"><input type="tel" id="custPhone" placeholder="Mobile Number *"></div>
+      <div class="form-group"><textarea id="custAddress" placeholder="Delivery Address *" rows="2"></textarea></div>
+      <button class="order-btn" onclick="placeOrder()"><i class="fab fa-whatsapp"></i> Order on WhatsApp</button>
+    </div>
+  </div>
+
+  <!-- FLOATING WHATSAPP -->
+  <a class="float-wa" href="https://wa.me/919999999999" target="_blank" title="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>🌯 Frankie Junction</h3>
+        <p>Premium frankie experience with fresh ingredients, secret recipes and unbeatable taste!</p>
+        <div class="social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/916353598802"><i class="fab fa-whatsapp"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#menu">Menu</a>
+        <a href="#feedback">Feedback</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Mohan Nagar Amroli, Surat</p>
+        <p><i class="fas fa-phone"></i> +91 6351318756</p>
+        <p><i class="fas fa-clock"></i> 7 AM - 7 PM Daily</p>
+      </div>
+    </div>
+    <div class="copyright">© 2025 Frankie Junction. All Rights Reserved. Made with ❤️</div>
+  </footer>
+
+  <script>
+    // 👉 IMPORTANT: Apna WhatsApp number yahan daalo (91 + 10 digit, no +, no spaces)
+    const WHATSAPP_NUMBER = "916353598802";
+
+    const frankies = [
+      { id: 1, name: "Paneer Tikka Frankie", desc: "Spicy paneer tikka with mint chutney & onions", price: 120, oldPrice: 150, img: "https://novellum-filestore-mcp.s3.us-east-2.amazonaws.com/atxp:atxp_acct_IBqlJhoESehvMCNoNi3nD/48ba4693-5f3e-4be8-b0a1-652e24fca675.png", badge: "🔥 Bestseller", rating: 5 },
+      { id: 2, name: "Veg Frankie", desc: "Mixed veggies, carrots, cabbage with tangy chutneys", price: 80, oldPrice: 100, img: "https://novellum-filestore-mcp.s3.us-east-2.amazonaws.com/atxp:atxp_acct_IBqlJhoESehvMCNoNi3nD/6daa7597-6fb5-4776-abf1-7665f25be62f.png", badge: "⭐ Popular", rating: 4 },
+      { id: 3, name: "Schezwan Frankie", desc: "Spicy schezwan noodles wrapped in soft roti", price: 110, oldPrice: 130, img: "https://novellum-filestore-mcp.s3.us-east-2.amazonaws.com/atxp:atxp_acct_IBqlJhoESehvMCNoNi3nD/e76ab893-3b68-414a-b934-8209eff10d0c.png", badge: "🌶️ Spicy", rating: 5 },
+      { id: 4, name: "Aloo Masala Frankie", desc: "Classic spicy potato filling with onions & chutney", price: 70, oldPrice: 90, img: "https://novellum-filestore-mcp.s3.us-east-2.amazonaws.com/atxp:atxp_acct_IBqlJhoESehvMCNoNi3nD/34d9ea59-84d1-487c-b43d-322407f5298e.png", badge: "💰 Budget", rating: 4 },
+      { id: 5, name: "Corn Cheese Frankie", desc: "Sweet corn with melted cheese - kids favourite!", price: 130, oldPrice: 160, img: "https://novellum-filestore-mcp.s3.us-east-2.amazonaws.com/atxp:atxp_acct_IBqlJhoESehvMCNoNi3nD/f8501273-f3cd-43b7-850c-7c2a35e86051.png", badge: "🧀 Cheesy", rating: 5 },
+      { id: 6, name: "Cheese Burst Frankie", desc: "Loaded with extra cheese, veggies & special sauce", price: 150, oldPrice: 180, img: "https://novellum-filestore-mcp.s3.us-east-2.amazonaws.com/atxp:atxp_acct_IBqlJhoESehvMCNoNi3nD/2817b9dd-0572-4346-b7a9-591ba0c02a00.png", badge: "⭐ Premium", rating: 5 }
+    ];
+
+    let cart = {};
+    let selectedRating = 0;
+
+    function renderMenu() {
+      const menu = document.getElementById('menuGrid');
+      menu.innerHTML = frankies.map(f => {
+        const stars = '★'.repeat(f.rating) + '☆'.repeat(5 - f.rating);
+        return `<div class="card">
+      <span class="badge">${f.badge}</span>
+      <div class="fav"><i class="far fa-heart"></i></div>
+      <img src="${f.img}" alt="${f.name}">
+      <div class="card-body">
+        <div class="rating">${stars} <span>(${f.rating}.0)</span></div>
+        <h3>${f.name}</h3>
+        <p class="desc">${f.desc}</p>
+        <div class="card-footer">
+          <div><span class="price">₹${f.price}<small>₹${f.oldPrice}</small></span></div>
+          <div id="action-${f.id}">
+            <button class="add-btn" onclick="addToCart(${f.id})"><i class="fas fa-plus"></i> Add</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+      }).join('');
+    }
+    renderMenu();
+
+    function addToCart(id) { cart[id] = (cart[id] || 0) + 1; updateUI(); }
+    function changeQty(id, d) { cart[id] = (cart[id] || 0) + d; if (cart[id] <= 0) delete cart[id]; updateUI(); }
+
+    function updateUI() {
+      frankies.forEach(f => {
+        const el = document.getElementById('action-' + f.id);
+        if (!el) return;
+        if (cart[f.id]) {
+          el.innerHTML = `<div class="qty-control">
+        <button onclick="changeQty(${f.id},-1)">−</button>
+        <span>${cart[f.id]}</span>
+        <button onclick="changeQty(${f.id},1)">+</button>
+      </div>`;
+        } else {
+          el.innerHTML = `<button class="add-btn" onclick="addToCart(${f.id})"><i class="fas fa-plus"></i> Add</button>`;
+        }
+      });
+      const total = Object.values(cart).reduce((a, b) => a + b, 0);
+      document.getElementById('cartCount').textContent = total;
+      renderCart();
+    }
+
+    function renderCart() {
+      const items = document.getElementById('cartItems');
+      const totalEl = document.getElementById('totalAmount');
+      const ids = Object.keys(cart);
+      if (ids.length === 0) {
+        items.innerHTML = `<div class="empty">🛒 Cart khaali hai! Kuch order karo 😋</div>`;
+        totalEl.textContent = "Total: ₹0"; return;
+      }
+      let total = 0;
+      items.innerHTML = ids.map(id => {
+        const f = frankies.find(x => x.id == id);
+        const sub = f.price * cart[id]; total += sub;
+        return `<div class="cart-item">
+      <div class="cart-item-info"><b>${f.name}</b><small>₹${f.price} × ${cart[id]} = ₹${sub}</small></div>
+      <div class="qty-control">
+        <button onclick="changeQty(${f.id},-1)">−</button>
+        <span>${cart[id]}</span>
+        <button onclick="changeQty(${f.id},1)">+</button>
+      </div>
+    </div>`;
+      }).join('');
+      totalEl.textContent = `Total: ₹${total}`;
+    }
+
+    function openCart() { document.getElementById('cartModal').classList.add('active'); renderCart(); }
+    function closeCart() { document.getElementById('cartModal').classList.remove('active'); }
+
+    function placeOrder() {
+      const name = document.getElementById('custName').value.trim();
+      const phone = document.getElementById('custPhone').value.trim();
+      const address = document.getElementById('custAddress').value.trim();
+      const ids = Object.keys(cart);
+      if (ids.length === 0) { alert("Pehle kuch frankie add karo! 🌯"); return; }
+      if (!name || !phone || !address) { alert("Naam, mobile aur address fill karo 📝"); return; }
+      let msg = `🌯 *NEW ORDER - Frankie Junction*%0A%0A`;
+      msg += `👤 *Name:* ${name}%0A`;
+      msg += `📞 *Phone:* ${phone}%0A`;
+      msg += `📍 *Address:* ${address}%0A%0A`;
+      msg += `🛒 *Order Details:*%0A`;
+      let total = 0;
+      ids.forEach(id => {
+        const f = frankies.find(x => x.id == id);
+        const sub = f.price * cart[id]; total += sub;
+        msg += `• ${f.name} × ${cart[id]} = ₹${sub}%0A`;
+      });
+      msg += `%0A💰 *Total Amount: ₹${total}*%0A%0A🙏 Please confirm my order!`;
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
+    }
+
+    // FEEDBACK STAR RATING
+    document.querySelectorAll('#starRating i').forEach(star => {
+      star.addEventListener('click', () => {
+        selectedRating = parseInt(star.dataset.val);
+        document.querySelectorAll('#starRating i').forEach(s => {
+          s.classList.toggle('active', parseInt(s.dataset.val) >= selectedRating);
+        });
+      });
+    });
+
+    function sendFeedback() {
+      const name = document.getElementById('fbName').value.trim();
+      const phone = document.getElementById('fbPhone').value.trim();
+      const item = document.getElementById('fbItem').value.trim();
+      const message = document.getElementById('fbMessage').value.trim();
+      if (!name || !message) { alert("Please naam aur feedback message bharo 📝"); return; }
+      if (selectedRating === 0) { alert("Please rating select karo ⭐"); return; }
+      let msg = `⭐ *NEW FEEDBACK - Frankie Junction*%0A%0A`;
+      msg += `👤 *Name:* ${name}%0A`;
+      if (phone) msg += `📞 *Phone:* ${phone}%0A`;
+      if (item) msg += `🌯 *Frankie Tried:* ${item}%0A`;
+      msg += `⭐ *Rating:* ${'⭐'.repeat(selectedRating)} (${selectedRating}/5)%0A%0A`;
+      msg += `💬 *Message:*%0A${message}%0A%0A🙏 Thank you!`;
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
+    }
+
+    document.getElementById('cartModal').addEventListener('click', e => {
+      if (e.target.id === 'cartModal') closeCart();
+    });
+  </script>
+</body>
+
+</html>
