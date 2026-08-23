@@ -4,8 +4,7 @@
 const WHATSAPP_NUMBER = "916359915993";
 
 // Backend API URL
-const API_BASE_URL = "https://frankie-junction-backend.onrender.com/api";
-
+const API_BASE_URL = "https://frankie-ka8z.onrender.com/api";
 // Menu data
 const frankies = [
   {
