@@ -19,7 +19,7 @@
 
 <body>
 
-<!-- NAVIGATION -->
+<!-- ==================== NAVIGATION ==================== -->
 <nav>
   <div class="logo">
     <div class="logo-circle">
@@ -29,27 +29,27 @@
     <span class="logo-text">Frankie<span>Junction</span></span>
   </div>
 
-  <div class="nav-links" id="navLinks">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#menu">Menu</a>
-    <a href="#offers">Offers</a>
-    <a href="#feedback">Feedback</a>
-    <a href="#contact">Contact</a>
-  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#offers">Offers</a></li>
+    <li><a href="#feedback">Feedback</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 
-  <div style="display:flex;align-items:center;gap:10px">
+  <div class="nav-right">
     <button class="cart-btn" onclick="openCart()">
       <i class="fas fa-shopping-cart"></i>
       Cart <span id="cartCount">0</span>
     </button>
-    <button class="menu-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">
+    <button class="menu-toggle" id="menuToggle">
       <i class="fas fa-bars"></i>
     </button>
   </div>
 </nav>
 
-<!-- HERO SECTION -->
+<!-- ==================== HERO SECTION ==================== -->
 <section class="hero" id="home">
   <div class="hero-inner">
     <div class="hero-content">
@@ -72,7 +72,7 @@
   </div>
 </section>
 
-<!-- STATS BAR -->
+<!-- ==================== STATS BAR ==================== -->
 <div class="stats-bar">
   <div class="stat-item reveal">
     <h3 data-target="5000" data-suffix="+">5000+</h3>
@@ -92,7 +92,7 @@
   </div>
 </div>
 
-<!-- ABOUT SECTION -->
+<!-- ==================== ABOUT SECTION ==================== -->
 <section class="about-section section" id="about">
   <div class="about-img-wrap reveal-left">
     <div class="about-img-frame">
@@ -117,7 +117,7 @@
   </div>
 </section>
 
-<!-- MENU SECTION - Dynamic from app.js -->
+<!-- ==================== MENU SECTION ==================== -->
 <section class="menu-section section" id="menu">
   <div class="section-title reveal">
     <small>Our Menu</small>
@@ -127,7 +127,7 @@
   <div class="menu" id="menuGrid"></div>
 </section>
 
-<!-- COMBO OFFERS SECTION -->
+<!-- ==================== COMBO OFFERS SECTION ==================== -->
 <section class="combo-section section" id="offers">
   <div class="section-title reveal">
     <small>🔥 Limited Time</small>
@@ -180,7 +180,7 @@
   </div>
 </section>
 
-<!-- WHY US SECTION -->
+<!-- ==================== WHY US SECTION ==================== -->
 <section class="why-section section">
   <div class="section-title reveal">
     <small>Why Us</small>
@@ -198,7 +198,7 @@
   </div>
 </section>
 
-<!-- STEPS SECTION -->
+<!-- ==================== STEPS SECTION ==================== -->
 <section class="steps-section section">
   <div class="section-title reveal">
     <small>Simple Steps</small>
@@ -234,7 +234,7 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS SECTION -->
+<!-- ==================== TESTIMONIALS SECTION ==================== -->
 <section class="testimonials-section section">
   <div class="section-title reveal">
     <small>Reviews</small>
@@ -272,7 +272,7 @@
   </div>
 </section>
 
-<!-- FEEDBACK SECTION -->
+<!-- ==================== FEEDBACK SECTION ==================== -->
 <section class="feedback-section section" id="feedback">
   <div class="section-title reveal">
     <small>Your Opinion Matters</small>
@@ -309,7 +309,7 @@
   </div>
 </section>
 
-<!-- CONTACT SECTION -->
+<!-- ==================== CONTACT SECTION ==================== -->
 <section class="contact-section section" id="contact">
   <div class="section-title reveal">
     <small>Get In Touch</small>
@@ -341,7 +341,7 @@
   </div>
 </section>
 
-<!-- CART MODAL -->
+<!-- ==================== CART MODAL ==================== -->
 <div class="cart-modal" id="cartModal">
   <div class="cart-panel">
     <h3>Your Cart <button onclick="closeCart()"><i class="fas fa-times"></i></button></h3>
@@ -359,29 +359,42 @@
   </div>
 </div>
 
-<!-- COMBO MODAL -->
+<!-- ==================== COMBO MODAL ==================== -->
 <div class="combo-modal-overlay" id="comboModal">
   <div class="combo-modal-box">
     <button class="close-btn" onclick="closeComboModal()">✕</button>
     <h3>Combo Order Details</h3>
     <div class="combo-modal-selected" id="comboModalSelected"></div>
+    
     <form id="comboForm" onsubmit="event.preventDefault(); sendComboOrder()">
-      <label>Aapka Naam *</label><input type="text" id="comboName" placeholder="Naam likhein" required>
-      <label>Mobile Number *</label><input type="tel" id="comboPhone" placeholder="+91 XXXXX XXXXX" required>
-      <label>Delivery Location *</label><input type="text" id="comboLocation" placeholder="Ghar ka address ya area" required>
-      <button type="submit" class="btn btn-green" style="width:100%;justify-content:center;margin-top:22px;font-size:1rem;padding:15px">
+      <label>Aapka Naam *</label>
+      <input type="text" id="comboName" placeholder="Naam likhein" required>
+      
+      <label>Mobile Number *</label>
+      <input type="tel" id="comboPhone" placeholder="+91 XXXXX XXXXX" required>
+      
+      <label>Delivery Location *</label>
+      <input type="text" id="comboLocation" placeholder="Ghar ka address ya area" required>
+      
+      <button type="button" class="btn btn-primary" onclick="payWithRazorpayCombo()" 
+        style="width:100%;justify-content:center;margin-top:16px;font-size:1rem;padding:15px;">
+        <i class="fas fa-credit-card"></i> Pay & Order
+      </button>
+      
+      <button type="submit" class="btn btn-green" 
+        style="width:100%;justify-content:center;margin-top:12px;font-size:1rem;padding:15px;">
         <i class="fab fa-whatsapp"></i> Order on WhatsApp
       </button>
     </form>
   </div>
 </div>
 
-<!-- FLOATING WHATSAPP BUTTON -->
+<!-- ==================== FLOATING WHATSAPP ==================== -->
 <a href="https://wa.me/916359915993?text=Hi%20Frankie%20Junction!%20Mujhe%20order%20karna%20hai%20🌯" target="_blank">
   <button class="floating-wa"><i class="fab fa-whatsapp"></i></button>
 </a>
 
-<!-- FOOTER -->
+<!-- ==================== FOOTER ==================== -->
 <footer>
   <div class="footer-grid">
     <div class="footer-col footer-brand">
@@ -392,12 +405,15 @@
         </div>
         <span class="logo-text">Frankie<span>Junction</span></span>
       </div>
+
       <p>Fresh, hot aur lajawab frankies — sirf aapke liye. Premium ingredients, secret masalas aur dil bhar ke pyaar ke saath banayi jaati hai har frankie.</p>
+
+      <!-- Social Icons - Center -->
       <div class="footer-social">
-        <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="social-btn"><i class="fab fa-facebook"></i></a>
-        <a href="#" class="social-btn"><i class="fab fa-whatsapp"></i></a>
-        <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
+        <a href="#" class="social-btn instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-btn facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-btn whatsapp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" class="social-btn youtube"><i class="fab fa-youtube"></i></a>
       </div>
     </div>
 
@@ -424,8 +440,21 @@
   <div class="copyright">© 2025 Frankie Junction. All Rights Reserved. Made with ❤️ for Frankie Lovers.</div>
 </footer>
 
-<!-- Main JavaScript -->
+<!-- ==================== MAIN JAVASCRIPT ==================== -->
 <script src="js/app.js"></script>
+
+<!-- ==================== NAVBAR TOGGLE ==================== -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const toggleBtn = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    if (toggleBtn && navLinks) {
+      toggleBtn.addEventListener("click", function() {
+        navLinks.classList.toggle("open");
+      });
+    }
+  });
+</script>
 
 </body>
 </html>

@@ -4,7 +4,7 @@
 const WHATSAPP_NUMBER = "916359915993";
 
 // Backend API URL
-const API_BASE_URL = "http://localhost:5000/api";
+const API_BASE_URL = "https://frankie-ka8z.onrender.com/api";
 
 // Menu data
 const frankies = [
@@ -223,7 +223,9 @@ function closeCart() {
   modal.classList.remove("active");
 }
 
-// Razorpay payment with Configuration ID
+// ============================================
+// NORMAL PAYMENT WITH RAZORPAY
+// ============================================
 async function payWithRazorpay() {
   const name = document.getElementById("custName").value.trim();
   const phone = document.getElementById("custPhone").value.trim();
@@ -264,7 +266,7 @@ async function payWithRazorpay() {
       name: "Frankie Junction",
       description: "Frankie Order",
       order_id: data.orderId,
-      checkout_config_id: "config_TT5d2VwMkHyopJ",
+      // checkout_config_id: "config_TT5d2VwMkHyopJ",
       prefill: { name, contact: phone },
       theme: { color: "#ff6b35" },
       handler: async function (payment) {
@@ -291,6 +293,7 @@ async function payWithRazorpay() {
 
           alert("Payment successful! 🎉");
 
+          // WhatsApp Message
           let msg = `🌯 *PAID ORDER - Frankie Junction*%0A%0A`;
           msg += `👤 *Name:* ${name}%0A`;
           msg += `📞 *Phone:* ${phone}%0A`;
@@ -298,7 +301,7 @@ async function payWithRazorpay() {
           msg += `🛒 *Order Details:*%0A`;
 
           Object.keys(cart).forEach(id => {
-            const f = frankies.find(x => x.id == id);
+            const f = frankies.find(x => x.id == parseInt(id));
             if (!f) return;
             const sub = f.price * cart[id];
             msg += `• ${f.name} × ${cart[id]} = ₹${sub}%0A`;
@@ -314,6 +317,112 @@ async function payWithRazorpay() {
           cart = {};
           updateUI();
           closeCart();
+
+        } catch (error) {
+          console.error("Verification Error:", error);
+          alert("Payment verify nahi ho paya.");
+        }
+      }
+    };
+
+    const razorpay = new Razorpay(options);
+
+    razorpay.on("payment.failed", function (response) {
+      console.error("Payment Failed:", response.error);
+      alert("Payment failed. Please try again.");
+    });
+
+    razorpay.open();
+
+  } catch (error) {
+    console.error("Razorpay Error:", error);
+    alert("Payment start nahi ho paya. Browser Console check karo.");
+  }
+}
+
+// ============================================
+// COMBO PAYMENT WITH RAZORPAY
+// ============================================
+async function payWithRazorpayCombo() {
+  const name = document.getElementById("comboName").value.trim();
+  const phone = document.getElementById("comboPhone").value.trim();
+  const address = document.getElementById("comboLocation").value.trim();
+  const amount = comboTarget ? comboTarget.price : 0;
+
+  if (!amount) {
+    alert("Combo select nahi hua.");
+    return;
+  }
+
+  if (!name || !phone || !address) {
+    alert("Naam, mobile aur address fill karo 📝");
+    return;
+  }
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/create-order`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ amount })
+    });
+
+    if (!response.ok) throw new Error("Backend Error: " + response.status);
+
+    const data = await response.json();
+    console.log("Razorpay Backend Response:", data);
+
+    if (!data.success) {
+      alert(data.message || "Razorpay order create nahi hua.");
+      return;
+    }
+
+    const options = {
+      key: data.keyId,
+      amount: data.amount,
+      currency: data.currency,
+      name: "Frankie Junction",
+      description: "Combo Order",
+      order_id: data.orderId,
+      // checkout_config_id: "config_TT5d2VwMkHyopJ",
+      prefill: { name, contact: phone },
+      theme: { color: "#ff6b35" },
+      handler: async function (payment) {
+        console.log("Payment Response:", payment);
+
+        try {
+          const verifyResponse = await fetch(`${API_BASE_URL}/verify-payment`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              razorpay_order_id: payment.razorpay_order_id,
+              razorpay_payment_id: payment.razorpay_payment_id,
+              razorpay_signature: payment.razorpay_signature
+            })
+          });
+
+          const verifyData = await verifyResponse.json();
+          console.log("Payment Verification:", verifyData);
+
+          if (!verifyData.success) {
+            alert("Payment verification failed ❌");
+            return;
+          }
+
+          alert("Payment successful! 🎉");
+
+          // WhatsApp Message
+          let msg = `🌯 *PAID COMBO ORDER - Frankie Junction*%0A%0A`;
+          msg += `👤 *Name:* ${name}%0A`;
+          msg += `📞 *Phone:* ${phone}%0A`;
+          msg += `📍 *Address:* ${address}%0A%0A`;
+          msg += `📦 *Combo:* ${comboTarget.name}%0A`;
+          msg += `💰 *Total Paid: ₹${amount}*%0A`;
+          msg += `💳 *Payment ID:* ${payment.razorpay_payment_id}%0A`;
+          msg += `🧾 *Order ID:* ${payment.razorpay_order_id}%0A%0A`;
+          msg += `🙏 Please confirm my order!`;
+
+          window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank");
+          closeComboModal();
 
         } catch (error) {
           console.error("Verification Error:", error);
@@ -525,5 +634,3 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-console.log("✅ app.js loaded successfully");
-console.log("✅ openCart:", typeof openCart);
