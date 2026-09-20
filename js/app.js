@@ -311,7 +311,7 @@ async function payWithRazorpay() {
           msg += `🧾 *Order ID:* ${payment.razorpay_order_id}%0A%0A`;
           msg += `🙏 Please confirm my order!`;
 
-          window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank");
+          window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
 
           cart = {};
           updateUI();
@@ -340,6 +340,7 @@ async function payWithRazorpay() {
 }
 
 // COMBO PAYMENT WITH RAZORPAY
+
 async function payWithRazorpayCombo() {
   const name = document.getElementById("comboName").value.trim();
   const phone = document.getElementById("comboPhone").value.trim();
@@ -417,7 +418,7 @@ async function payWithRazorpayCombo() {
           msg += `🧾 *Order ID:* ${payment.razorpay_order_id}%0A%0A`;
           msg += `🙏 Please confirm my order!`;
 
-          window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank");
+          window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
           closeComboModal();
 
         } catch (error) {
@@ -477,7 +478,7 @@ function placeOrder() {
   msg += `%0A💰 *Total: ₹${total}*%0A%0A`;
   msg += `🙏 Please confirm my order!`;
 
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank");
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
 }
 
 // Combo order
@@ -520,7 +521,7 @@ function sendComboOrder() {
   msg += `📍 *Location:* ${location}%0A%0A`;
   msg += `🙏 Please confirm this combo order!`;
 
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank");
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
   closeComboModal();
 }
 
@@ -560,7 +561,7 @@ function sendFeedback() {
   msg += `💬 *Message:*%0A${message}%0A%0A`;
   msg += `🙏 Thank you!`;
 
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank");
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
 }
 
 // Scroll reveal animation
