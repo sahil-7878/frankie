@@ -223,9 +223,8 @@ function closeCart() {
   modal.classList.remove("active");
 }
 
-// ============================================
+
 // NORMAL PAYMENT WITH RAZORPAY
-// ============================================
 async function payWithRazorpay() {
   const name = document.getElementById("custName").value.trim();
   const phone = document.getElementById("custPhone").value.trim();
@@ -266,8 +265,8 @@ async function payWithRazorpay() {
       name: "Frankie Junction",
       description: "Frankie Order",
       order_id: data.orderId,
-      // checkout_config_id: "config_TT5d2VwMkHyopJ",
-      prefill: { name, contact: phone },
+      checkout_config_id: "config_TT5d2VwMkHyopJ",
+      prefill: { name, contact: phone, email: name + "@gmail.com" },
       theme: { color: "#ff6b35" },
       handler: async function (payment) {
         console.log("Payment Response:", payment);
@@ -340,9 +339,7 @@ async function payWithRazorpay() {
   }
 }
 
-// ============================================
 // COMBO PAYMENT WITH RAZORPAY
-// ============================================
 async function payWithRazorpayCombo() {
   const name = document.getElementById("comboName").value.trim();
   const phone = document.getElementById("comboPhone").value.trim();
@@ -383,8 +380,7 @@ async function payWithRazorpayCombo() {
       name: "Frankie Junction",
       description: "Combo Order",
       order_id: data.orderId,
-      // checkout_config_id: "config_TT5d2VwMkHyopJ",
-      prefill: { name, contact: phone },
+      prefill: { name, contact: phone, email: name + "@gmail.com" },
       theme: { color: "#ff6b35" },
       handler: async function (payment) {
         console.log("Payment Response:", payment);
